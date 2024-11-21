@@ -1,11 +1,7 @@
-  - name: Shell Examples
-    hosts: ALL
-    tasks:
+-hosts: all
+ become: true
+ tasks:
 
-    - name: Check Date with Shell command
-      shell:
-         "date"
-      register: datecmd
-      tags: datecmd
-
-    - debug: msg="{{datecmd.stdout}}"
+ name: Ping test
+ ping:
+ 
