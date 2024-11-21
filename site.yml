@@ -1,7 +1,8 @@
-name: Install the latest version of Apache and MariaDB
-hosts: all
-  ansible.builtin.package:
-    name:
+---
+- hosts: my_servers
+  become: true
+  tasks:
+    - name: Print OS info
       - httpd
       - mariadb-server
     state: latest
