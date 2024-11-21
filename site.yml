@@ -25,9 +25,9 @@
      
       - name: Capture OS Name
       command: lsb_release -a
-      register: os_name
+      register: os_name1
 
     - name: Debug OS Name
       debug:
-        var: os_name.stdout
+        var: os_name1.stdout
     
