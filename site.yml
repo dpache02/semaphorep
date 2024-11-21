@@ -1,17 +1,7 @@
 ---
-  - name: Shell Examples
-    hosts: all
-    tasks:
-
-    - name: Open /etc/password file
-      become: yes
-      async: 10
-      poll: 0
-      shell:
-         "cat password"
-      args:
-        chdir: "/etc" 
-      register: fileout
-      tags: fileout
-
-    - debug: msg="{{ fileout.stdout-lines }}"
+- hosts: my_servers
+  become: true
+  tasks:
+    - name: Print OS info
+      ansible.builtin.package:
+        name: apache2
