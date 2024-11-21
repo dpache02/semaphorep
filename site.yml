@@ -1,6 +1,6 @@
 ---
-# Primer ejemplo de Playbook en Ansible
-- hosts: all
-  tasks:
-  - name: Hacer ping
-    ping:
+- name: Verificar Fecha 
+  shell:
+     "date"
+  register:  shelcmd
+  tag:  checkdate  
