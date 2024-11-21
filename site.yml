@@ -22,3 +22,11 @@
     - name: Debug OS Name
       debug:
         var: os_name.stdout
+     
+     - name: Detalles de maquina
+       command: Hostnamectl
+       register: detalles
+
+      - name: Debug Detalles
+        debug:
+          var: detalles.stdout
