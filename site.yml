@@ -1,6 +1,12 @@
 ---
-- name: Verificar Fecha 
-  shell:
-     "date"
-  register:  shelcmd
-  tag:  checkdate  
+  - name: Shell Examples
+    hosts: testservers
+    tasks:
+
+    - name: Check Date with Shell command
+      shell:
+         "date"
+      register: datecmd
+      tags: datecmd
+
+    - debug: msg="{{datecmd.stdout}}"
