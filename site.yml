@@ -1,7 +1,6 @@
 ---
   - name: Shell Examples
-    hosts: testservers
-    tasks:
+     tasks:
 
     - name: Check Date with Shell command
       shell:
