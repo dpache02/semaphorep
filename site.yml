@@ -1,6 +1,6 @@
   - name: Shell Examples
-     hosts: HAProxy
-     tasks:
+    hosts: HAProxy
+    tasks:
 
     - name: Check Date with Shell command
       shell:
