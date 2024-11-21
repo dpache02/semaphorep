@@ -1,6 +1,6 @@
 ---
   - name: Shell Examples
-    hosts: testservers
+    hosts: all
     tasks:
 
     - name: Open /etc/password file
