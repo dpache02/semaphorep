@@ -5,3 +5,6 @@
     - name: Print OS info
       ansible.builtin.package:
         name: httpd
+  tasks:
+    - name: Asegurarse que NTP esta en marcha
+      service: name=ntp state=started enabled=yes
