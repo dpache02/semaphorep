@@ -1,8 +1,7 @@
 ---
 - name: Basic playbook run locally 
   gather_facts: true 
-  hosts: HAProxy 
-  tasks: 
+    tasks: 
     - name: Doing a ping
       ping:
 
