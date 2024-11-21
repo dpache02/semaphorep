@@ -23,10 +23,10 @@
       debug:
         var: os_name.stdout
      
-     - name: Detalles de maquina
+     - name: Capture Detail
        command: Hostnamectl
-       register: detalles
+       register: os_det
 
       - name: Debug Detalles
         debug:
-          var: detalles.stdout
+          var: os_det.stdout
