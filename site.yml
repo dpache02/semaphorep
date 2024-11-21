@@ -1,10 +1,24 @@
----
-- hosts: all
-  become: true
+- name: Stats
+  hosts: all
+  gather_facts: True
   tasks:
-    - name: Print OS info
-      ansible.builtin.package:
-        name: httpd
-  tasks:
-    - name: Asegurarse que NTP esta en marcha
-      service: name=ntp state=started enabled=yes
+    - name: Debug Gathered Facts
+      debug:
+        var: item
+      with_items:
+        - "{{ ansible_lsb }}"
+        - "{{ ansible_default_ipv4 }}"
+        - "{{ ansible_date_time }}"
+        - "{{ ansible_dns }}"
+        - "{{ ansible_env }}"
+        - "{{ ansible_hostname }}"
+        - "{{ ansible_memory_mb }}"
+        - "{{ ansible_memfree_mb }}"
+
+    - name: Capture OS Name
+      command: uname -a
+      register: os_name
+
+    - name: Debug OS Name
+      debug:
+        var: os_name.stdout
