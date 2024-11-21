@@ -1,26 +1,17 @@
 ---
   - name: Shell Examples
-    hosts: all
+    hosts: testservers
     tasks:
 
-    - name: Start tomcat
+    - name: Open /etc/password file
       become: yes
-      become_user: tomcat
       async: 10
       poll: 0
       shell:
-         "./startup.sh"
+         "cat password"
       args:
-        chdir: "/apps/tomcat/tomcat8/bin" 
-      register: datecmd
-      tags: datecmd
+        chdir: "/etc" 
+      register: fileout
+      tags: fileout
 
-    - name: Validate if tomcat is UP
-      tags: tomvalidate
-      wait_for:
-        host: "localhost"
-        port: 8080
-        delay: 10
-        timeout: 30
-        state: started
-        msg: "Tomcat server is not running"
+    - debug: msg="{{ fileout.stdout-lines }}"
