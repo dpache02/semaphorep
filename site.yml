@@ -16,7 +16,7 @@
         - "{{ ansible_memfree_mb }}"
 
     - name: Capture OS Name
-      command: uname -a
+      command: cat /etc/*release
       register: os_name
 
     - name: Debug OS Name
