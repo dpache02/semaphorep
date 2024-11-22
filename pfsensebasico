@@ -15,7 +15,6 @@
     - name: Bloquear tráfico ICMP
       pfsense_rule:
         interface: lan
-        action: block
         protocol: icmp
         source: any
         destination: any
