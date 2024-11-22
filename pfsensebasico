@@ -1,0 +1,29 @@
+---
+- name: Configurar pfSense
+  hosts: pfsense
+  gather_facts: no
+  tasks:
+    - name: Configurar interfaz WAN
+      pfsensible.core.pfsense_interface:
+        descr: WAN
+        interface: igb0
+        enable: true
+        ipv4_type: dhcp
+
+    - name: Configurar interfaz LAN
+      pfsensible.core.pfsense_interface:
+        descr: LAN
+        interface: igb1
+        enable: true
+        ipv4_type: static
+        ipv4_address: 192.168.1.1
+        ipv4_prefixlen: 24
+
+    - name: Configurar regla de firewall
+      pfsensible.core.pfsense_rule:
+        interface: LAN
+        action: pass
+        protocol: tcp
+        source: any
+        destination: any
+        description: "Permitir todo el tráfico TCP en LAN"
