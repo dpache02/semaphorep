@@ -1,4 +1,3 @@
----
 - name: Configurar pfSense
   hosts: all
   gather_facts: no
