@@ -6,14 +6,14 @@
     - name: Configurar interfaz WAN
       pfsensible.core.pfsense_interface:
         descr: WAN
-        interface: igb0
+        interface: em0
         enable: true
         ipv4_type: dhcp
 
     - name: Configurar interfaz LAN
       pfsensible.core.pfsense_interface:
         descr: LAN
-        interface: igb1
+        interface: em1
         enable: true
         ipv4_type: static
         ipv4_address: 192.168.1.1
