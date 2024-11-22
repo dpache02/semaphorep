@@ -1,6 +1,6 @@
 ---
 - name: Configurar pfSense
-  hosts: pfsense
+  hosts: all
   gather_facts: no
   tasks:
     - name: Configurar interfaz WAN
