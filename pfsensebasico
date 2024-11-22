@@ -6,6 +6,6 @@
     - plomosits.pfsense
 
   tasks:
-    name: Reboot
-      pfsense_reboot:
-        mode: reboot
+    -name: Reboot
+       pfsense_reboot:
+         mode: reboot
