@@ -4,7 +4,7 @@
   gather_facts: no
   tasks:
     - name: Permitir tráfico HTTP y HTTPS
-      pfsensible.core.pfsense_rule:
+      pfsense_rule:
         interface: lan
         action: pass
         protocol: tcp
@@ -14,7 +14,7 @@
         description: "Permitir tráfico HTTP y HTTPS"
 
     - name: Bloquear tráfico ICMP
-      pfsensible.core.pfsense_rule:
+      pfsense_rule:
         interface: lan
         action: block
         protocol: icmp
