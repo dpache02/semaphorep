@@ -1,29 +1,23 @@
 ---
-- name: Configurar pfSense
-  hosts: all
+- name: Configurar reglas de firewall en pfSense
+  hosts: pfsense
   gather_facts: no
   tasks:
-    - name: Configurar interfaz WAN
-      pfsensible.core.pfsense_interface:
-        descr: WAN
-        interface: igb0
-        enable: true
-        ipv4_type: dhcp
-
-    - name: Configurar interfaz LAN
-      pfsensible.core.pfsense_interface:
-        descr: LAN
-        interface: igb1
-        enable: true
-        ipv4_type: static
-        ipv4_address: 10.0.0.1
-        ipv4_prefixlen: 24
-
-    - name: Configurar regla de firewall
+    - name: Permitir tráfico HTTP y HTTPS
       pfsensible.core.pfsense_rule:
-        interface: LAN
+        interface: lan
         action: pass
         protocol: tcp
         source: any
         destination: any
-        description: "Permitir tráfico TCP en LAN"
+        destination_port_range: "80:443"
+        description: "Permitir tráfico HTTP y HTTPS"
+
+    - name: Bloquear tráfico ICMP
+      pfsensible.core.pfsense_rule:
+        interface: lan
+        action: block
+        protocol: icmp
+        source: any
+        destination: any
+        description: "Bloquear tráfico ICMP"
