@@ -16,7 +16,7 @@
         interface: em1
         enable: true
         ipv4_type: static
-        ipv4_address: 192.168.1.1
+        ipv4_address: 10.0.0.1
         ipv4_prefixlen: 24
 
     - name: Configurar regla de firewall
