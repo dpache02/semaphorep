@@ -1,21 +1,11 @@
----
-    - name: "Define {{ interface_args.descr }}"
-      pfsensible.core.pfsense_interface: "{{ interface_args }}"
-      register: interface
+- name: pfSense Reboot
+  hosts: all
+  gather_facts: false
 
-    - fail:
-        msg: Interface ifname {{ interface.ifname }} does not match expected value {{ interface_ifname }}
-      when: interface.ifname != interface_ifname
+  collections:
+    - plomosits.pfsense
 
-    - name: Get interface configuration for {{ interface_args.interface }}
-      command: /sbin/ifconfig {{ interface_args.interface }}
-      changed_when: no
-      register: ifconfig
-
-    - name: Get interface description
-      set_fact:
-        if_description: "{{ ifconfig.stdout_lines | select('search', 'description:') | map('regex_replace', '^\\s*description:\\s*', '') | first }}"
-
-    - fail:
-        msg: "Unexpected interface description found: {{ if_description }} != {{ interface_args.descr }}"
-      when: if_description != interface_args.descr
+  tasks:
+    - name: Reboot
+      pfsense_reboot:
+        mode: reboot
