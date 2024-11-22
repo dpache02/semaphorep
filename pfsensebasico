@@ -1,6 +1,7 @@
-- name: pfSense Reboot
+---
+- name: Configurar pfSense
   hosts: all
-  gather_facts: false
+  gather_facts: no
 
   collections:
     - plomosits.pfsense
