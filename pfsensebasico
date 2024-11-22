@@ -6,7 +6,6 @@
     - name: Permitir tráfico HTTP y HTTPS
       pfsense_rule:
         interface: lan
-        action: pass
         protocol: tcp
         source: any
         destination: any
